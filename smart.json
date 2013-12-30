@@ -1,0 +1,13 @@
+{
+  "packages": {
+    "iron-router": {},
+    "moment": {},
+    "ionicons": {},
+    "collection-hooks": {},
+    "houston": {},
+    "autoform": {},
+    "collection2": {},
+    "bitlywrap": {},
+    "zurb-foundation": {}
+  }
+}

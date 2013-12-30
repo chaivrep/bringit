@@ -1,0 +1,27 @@
+<template name="eventList">
+	<div class="row">
+		<div class="small-12 columns">
+			<h2>My Events</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<!--<th>Owner</th>-->
+						<th>Date</th>
+						<th class="show-for-medium-up">Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each this}}
+						<tr>
+							<td><a href="/{{_id}}">{{evName}}</a></td>
+							<!--<td>{{evOwner}}</td>-->
+							<td>{{formatDate evDate}}</td>
+							<td class="show-for-medium-up">{{evTime}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</template>

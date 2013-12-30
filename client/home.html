@@ -1,0 +1,92 @@
+<template name="home">
+	<div class="imgBkg">
+		<div class="row headerRow">
+			<div class="small-12 medium-7 columns heroCopy">
+				<h1>It's 'Party Hard'<br/>Not 'Party Difficult'</h1>
+				<p>BringIt makes it easy to plan your next get-together:
+					<ul>
+						<li>Make a list of items</li>
+						<li>Share the list with your friends</li>
+						<li>Guests sign up to bring items</li>
+					</ul>
+				</p>
+			</div>
+			
+			<div class="small-12 medium-5 columns">
+				{{#autoForm schema=events2Collection framework="none" id="insertEventForm" class="radius panel" novalidate="true"}}
+				<div class="row ">
+					<div class="small-12 columns">
+						<h4>Get Started</h4>
+					</div>
+				</div>
+				<div class="row ">
+
+					<div class="small-12 columns {{#if afFieldIsInvalid 'evName'}}error{{/if}}">
+						{{afFieldLabel 'evName' }}
+						{{afFieldInput 'evName' }}
+						{{#if afFieldIsInvalid 'evName'}}
+						<small class="error">{{afFieldMessage 'evName'}}</small>
+						{{/if}}
+					</div>
+				</div>
+				<div class="row ">
+					<div class="small-12 columns {{#if afFieldIsInvalid 'evDate'}} error{{/if}}">
+						{{afFieldLabel 'evDate'}}
+						{{afFieldInput 'evDate'}}
+						{{#if afFieldIsInvalid 'evDate'}}
+						<small class="error">{{afFieldMessage 'evDate'}}</small>
+						{{/if}}
+					</div>
+				</div>
+				<div class="row ">
+					<div class="small-12 columns {{#if afFieldIsInvalid 'evTime'}} error{{/if}}">
+						{{afFieldLabel 'evTime'}}
+						{{afFieldInput 'evTime' options=timeOptions}}
+						{{#if afFieldIsInvalid 'evTime'}}
+						<small class="error">{{afFieldMessage 'evTime'}}</small>
+						{{/if}}
+					</div>
+				</div>
+				<div class="row ">
+					<div class="small-12 columns {{#if afFieldIsInvalid 'evLoc'}} error{{/if}}">
+						{{afFieldLabel 'evLoc'}}
+						{{afFieldInput 'evLoc'}}
+						{{#if afFieldIsInvalid 'evLoc'}}
+						<small class="error">{{afFieldMessage 'evLoc'}}</small>
+						{{/if}}
+					</div>
+				</div>
+				<div class="row ">
+					<div class="small-12 columns">
+
+						<button type="submit" class="radius small button insert">Next</button>
+					</div>
+				</div>
+				{{/autoForm}}
+			</div>
+		</div>
+		<div id="benefits">
+			<div class="row text-center">
+				<div class="small-12 medium-4 columns">
+					<i class="ion-clipboard"></i>
+					<h4>Make a list</h4>
+					<p>Add all the stuff you need people to bring &mdash; food, drinks, whatever</p>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<i class="ion-ios7-people"></i>
+					<h4>Invite your friends</h4>
+					<p>Just send your friends the link.  They can see all the event details and the list of items</p>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<i class="ion-checkmark-round"></i>
+					<h4>Select items to bring</h4>
+					<p>Friends sign in with Facebook and pick the items they're going to bring</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+
+
+</template>
