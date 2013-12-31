@@ -1,5 +1,11 @@
 Template.home.helpers({
-    'timeOptions': function(){
+    
+    'events2Collection': function(){
+        return eForm;
+    },
+});
+
+timeOptionsArray = function(){
         var a = new Date(0,0,0,0,0,0,0);
         var b = new Date(0,0,0,0,30,0,0);
 
@@ -7,14 +13,8 @@ Template.home.helpers({
         for (i =0; i < ops.length; i++){
             r[i] = {label: ops[i].format("hh:mm A"), value: ops[i].format("hh:mm A")};
         }
-        //return [{label: "12:00 AM", value: "12:00 AM"}, {label: "12:30 AM", value: "12:30 AM"}];
         return r;
-    },
-    'events2Collection': function(){
-        return eForm;
-    },
-});
-
+};
 
 signInWithCallback = function(fn, params){
     if ( Meteor.userId()) {
@@ -141,6 +141,10 @@ Handlebars.registerHelper('currURL', function() {
     return window.location.href;
 });
 
+Handlebars.registerHelper('timeOptions', function() {
+    return timeOptionsArray();
+});
+
 
 //FIX FOR FOUNDATION TO FORCE LOAD OF JS AFTER PAGE LOAD
 Template.template.rendered = function(){
@@ -148,6 +152,8 @@ Template.template.rendered = function(){
     $(document).foundation();
 }
 
+
+//SUBSCRIPTIONS
 evsOneHandle = null;
 evsListHandle = null;
 
@@ -156,4 +162,23 @@ Deps.autorun(function() {
     evsOneHandle = Meteor.subscribe("evs", Session.get("eventId"));
     evsListHandle = Meteor.subscribe("evsList");
 });
+
+
+//SOCIAL URLS
+Handlebars.registerHelper('twitterUrl', function() {
+    return "http://www.twitter.com/peterchaivre";
+});
+
+Handlebars.registerHelper('linkedinUrl', function() {
+    return "http://www.linkedin.com/in/peterchaivre";
+});
+
+Handlebars.registerHelper('blogUrl', function() {
+    return "http://www.peterchaivre.com";
+});
+
+Handlebars.registerHelper('bugUrl', function() {
+    return "https://github.com/chaivrep/bringit/issues/new";
+});
+
 

@@ -19,6 +19,8 @@
 							<td>{{formatDate evDate}}</td>
 							<td class="show-for-medium-up">{{evTime}}</td>
 						</tr>
+					{{else}}
+						<h6>You don't have any events yet. <a href="{{pathFor 'home'}}">Create an event.</a>
 					{{/each}}
 				</tbody>
 			</table>

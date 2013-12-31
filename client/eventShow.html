@@ -73,7 +73,7 @@
 									<div class="medium-9 columns">
 										<div class="row">
 											<div class="small-1o small-offset-2 medium-10 medium-offset-2 columns">
-												<a href="#" data-id='{{itemName}}' class="deleteItem"><i class="ion-trash-b"></i>Delete</a>
+												<a href="#" data-id='{{itemName}}' class="deleteItem"><i class="ion-trash-a"></i>Delete item</a>
 
 												<!--Begin Modal-->
 												{{> itemDeleteModal this}}
@@ -99,7 +99,7 @@
 								{{#if add_Item}}
 								<input type='text' id="add_itemName" placeholder="What item?">
 								{{else}}
-								<strong><i class="ion-plus-round"></i> {{#if userIsOwner}}Add item{{else}}Bring something else{{/if}}</strong>
+								<i class="ion-plus-round"></i> {{#if userIsOwner}}Add item{{else}}Bring something else{{/if}}
 								{{/if}}
 							</h5>
 						</div>
@@ -114,55 +114,65 @@
 					<div class="small-12 columns ">
 						<div class='row'>
 							<div class="small-12 columns">
-								<h4 class="sidebarCopy">EVENT DEETS</h4>
+								<h3 class="sidebarCopy text-center">Event Info</h3>
 							</div>
 						</div>
 
 						<div class='row'>
 							<div class="small-12 columns">
 								<div class="row collapse">
-									<div class="small-3 columns">
-										<h6 class="sidebarCopy">WHEN:</h6> 
-									</div>
-									<div class="small-5 columns">
-										<h6 class="sidebarCopy">{{#if edit_eventDate}}
-											<input type='date' id="edit_eventDate" value="{{formatDate evDate}}">
+									<div class="small-12 columns">
+										<dl>
+										<dt class="sidebarCopy">Date:</dt>
+										<dd class="sidebarCopy">{{#if edit_eventDate}}
+											<input type='date' id="edit_eventDate" value="{{formatDateInput evDate}}">
 											{{else}}
 											<span id="eventDate">{{ formatDate evDate }}</span>
 											{{/if}}
-										</h6>
+										</dd>
+										<dl>
 									</div>
-									<div class="small-1 columns">
-										<h6 class="sidebarCopy">@</h6>
-									</div>
-									<div class="small-3 columns">
-										<h6 class="sidebarCopy">{{#if edit_eventTime}}
-											<input type='time' id="edit_eventTime" value="{{formatTime evTime}}">
+								</div>
+								<div class="row collapse">
+									<div class="small-12 columns">
+										<dl>
+										<dt class="sidebarCopy">Time:</dt>
+										<dd class="sidebarCopy">{{#if edit_eventTime}}
+											<select id="edit_eventTime">
+												{{#each timeOptions}}
+													<option {{selected evTime value}} value="{{value}}">{{label}}</option>
+												{{/each}}
+											</select>
 											{{else}}
 											<span id="eventTime">{{ formatTime evTime }}</span>
 											{{/if}}
-										</h6>
+										</dd>
+									</dl>
 									</div>
 								</div>
 								<div class='row collapse'>
 									<div class="small-12 columns">
-										<h6 class="sidebarCopy">
-											WHERE: {{#if edit_eventLocation}}
-											<input type='text' id="edit_eventLocation" value="{{eventLoc}}">
+										<dl>
+										<dt class="sidebarCopy">Where:</dt>
+										<dd class="sidebarCopy">{{#if edit_eventLocation}}
+											<input type='text' id="edit_eventLocation" value="{{evLoc}}">
 											{{else}}
 											<span id="eventLocation">{{ evLoc}}</span>
 											{{/if}}
-										</h6>
+										</dd>
+										</dl>
 									</div>
 								</div>
 								<div class='row collapse'>
 									<div class="small-12 columns ">
-										<h6 class="sidebarCopy">YOUR HOST:</h6>
-										<div class="text-center">
-											<h6><img class="circle" src="{{user_image evOwner}}">
+										<dl>
+										<dt class="sidebarCopy">Your Host:</dt>
+										<div>
+											<dd class="sidebarCopy"><img class="circle" src="{{user_image evOwner}}">
 												{{ user_name evOwner}}
-											</h6>
+											</dd>
 										</div>
+										</dl>
 									</div>
 								</div>
 							</div>
@@ -183,8 +193,19 @@
 		<div class="small-12 columns">
 			<div class="row">
 				<div class="small-12 columns" id="ownerAlert">
-					<div data-alert class="panel">
-						<h5><b>YOU ARE THE HOST OF THIS EVENT</b></h5><h6>Share it: <span id="currURL"><a>{{ currURL }}</a></span></h6><h6><a class="deleteEvent" data-id="{{ _id }}"><i class="ion-trash-b"></i> Delete</a></h6>
+					<div class="owner panel">
+						<div class="row">
+							<div class="small-12 medium-6 columns">
+								<h6 class="">You are the host of this event.</h6>
+							</div>
+							<div class="small-12 medium-6 columns">
+								<ul class="inline-list ownerFunctions">
+									<li><h6><a class="sendInvite"><i class="ion-forward"></i> Send invites</a></h6></li>
+									<li><h6><a class="deleteEvent" data-id="{{ _id }}"><i class="ion-trash-a"></i> Delete event</a></h6></li>
+									{{> inviteModal}}
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -235,6 +256,18 @@
 					<li><a class="confirmDeleteItem tiny primary button radius" data-id="{{ itemName }}">Yes</a></li>
 					<li><a class="cancelDeleteItem tiny secondary button radius">No</a></li>
 				</ul>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="inviteModal">
+	<div class="small reveal-modal" id="inviteModal" data-reveal>
+		<a class="close-reveal-modal">&#215;</a>
+		<div class="row">
+			<div class="small-12 columns">
+				<p>Copy this URL and send it to your guests: <a>{{currURL}}</a></p>
+				
 			</div>
 		</div>
 	</div>

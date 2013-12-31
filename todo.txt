@@ -1,11 +1,11 @@
 1) Allow/Deny and remove insecure {DONE]}
-2) Clean up date/time updates
+2) Clean up date/time updates [DONE]
 3) Fix Description [DONE]
 4) Header image for mobile
 5) Add list of your events [DONE]
 6) Logout [DONE]
 7) Register 'Done' button for mobile
-8) Add form to report bugs via github
+8) Add form to report bugs via github {DONE}
 9) Change footer [DONE]
 10) Unit testing
 11) LESS {DONE]}

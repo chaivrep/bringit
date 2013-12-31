@@ -1,19 +1,22 @@
 userHandle = Deps.autorun(function(){return Meteor.subscribe('users')});
 
 Template.eventShow.helpers({
-	
-	
+	selected: function(time, value){
+		if (time == value) {
+			return "selected=selected";
+		} else {
+			return "";
+		}
+	},
 	formatTime: function(t){
 		return moment(t, "HH:mm A").format('LT');
+	},
+	formatDateInput: function(d){
+		return moment(d).format('YYYY-MM-DD');
 	},
 	eventDescExists: function(){
 		return ((this.evDesc != "") || (this.evOwner == Meteor.userId()));
 	},
-	
-	
-	/*user_name: function(u) { 
-		return userName(u);
-	},*/
 	is_bringing: function(bringer){
 		if (bringer == Meteor.userId()){
 			return "You are bringing...";
@@ -55,6 +58,9 @@ Template.eventShow.helpers({
 });
 
 Template.eventShow.events({
+	'click .sendInvite': function(e,t){
+  		$("#inviteModal").foundation('reveal', 'open');
+  	},
 	'mouseover #nameDiv': function(e,t){
 		if (Meteor.userId() == this.evOwner) {
 			$("#nameDiv").addClass("highlight");
@@ -113,17 +119,27 @@ Template.eventShow.events({
 			$("#descDiv").removeClass("highlight");
 		}
 	},
+	'mouseover #eventDate': function(e,t){
+		if (Meteor.userId() == this.evOwner) {
+			$("#eventDate").addClass("highlight");
+		}
+	},
+	'mouseout #eventDate': function(e,t){
+		if (Meteor.userId() == this.evOwner) {
+			$("#eventDate").removeClass("highlight");
+		}
+	},
 	'click #eventDate': function (e, t) {
 		if (Meteor.userId() == this.evOwner) {
 			Session.set('edit_eventDate', true);
 			Deps.flush();
-			$("#edit_eventDate").val(this.evDate);
 			$("#edit_eventDate").focus();
 		}
 	},
 	'keyup #edit_eventDate': function (e, t) {
 		if (e.which === 13) {
-			var dateVal = String(e.target.value || "");
+			var dateVal = moment(String(e.target.value || "")).toDate();
+			console.log("dateVal ", dateVal);
 			if (dateVal) {
 				evs.update(this._id, {$set:{evDate: dateVal}});
 				Session.set('edit_eventDate', false);
@@ -133,6 +149,16 @@ Template.eventShow.events({
 	'focusout #edit_eventDate': function (e, t){
 		Session.set('edit_eventDate', false);
 	},
+	'mouseover #eventTime': function(e,t){
+		if (Meteor.userId() == this.evOwner) {
+			$("#eventTime").addClass("highlight");
+		}
+	},
+	'mouseout #eventTime': function(e,t){
+		if (Meteor.userId() == this.evOwner) {
+			$("#eventTime").removeClass("highlight");
+		}
+	},
 	'click #eventTime': function (e, t) {
 		if (Meteor.userId() == this.evOwner) {
 			Session.set('edit_eventTime', true);
@@ -141,17 +167,25 @@ Template.eventShow.events({
 			$("#edit_eventTime").focus();
 		}
 	},
-	'keyup #edit_eventTime': function (e, t) {
-		if (e.which === 13) {
-			var timeVal = String(e.target.value || "");
-			if (timeVal) {
-				evs.update(this._id, {$set:{evTime: timeVal}});
-				Session.set('edit_eventTime', false);
-			}
+	'change #edit_eventTime': function (e, t) {
+		var timeVal = String(e.target.value || "");
+		if (timeVal) {
+			evs.update(this._id, {$set:{evTime: timeVal}});
+			Session.set('edit_eventTime', false);
 		}
 	},
 	'focusout #edit_eventTime': function (e, t){
 		Session.set('edit_eventTime', false);
+	},
+	'mouseover #eventLocation': function(e,t){
+		if (Meteor.userId() == this.evOwner) {
+			$("#eventLocation").addClass("highlight");
+		}
+	},
+	'mouseout #eventLocation': function(e,t){
+		if (Meteor.userId() == this.evOwner) {
+			$("#eventLocation").removeClass("highlight");
+		}
 	},
 	'click #eventLocation': function (e, t) {
 		if (Meteor.userId() == this.evOwner) {

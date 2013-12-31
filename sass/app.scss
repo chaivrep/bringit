@@ -1,25 +1,74 @@
+$light-gray: #efefef;
+
+
+/********************************
+ *
+ * MIXINS
+ *
+ *******************************/
+
+@mixin round-image($diameter, $marg-top, $marg-right, $marg-btm, $marg-left, $b-width){
+  display: block;
+  width: $diameter;
+  height: $diameter;
+  margin: $marg-top $marg-right $marg-btm $marg-left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  border-radius: 99em;
+  border: $b-width solid #eee;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+
+*{
+  margin: 0;
+}
+
+
 html, body {
   height: 100%;
   overflow-x: hidden; /*THIS IS FIXING STUFF*/
 }
 
+dl{
+  font-weight: 300 !important;
+}
+
+dt{
+  font-weight: normal !important;
+}
+
 .imgBkg{
-  background-image: url('/156323195_blur_dark.jpg');
+  
+  background-image: url('/tall.jpg');
   background-color: #333;
   background-repeat: no-repeat;
-  /*background-size: auto 100%;*/
-  background-attachment: fixed;
-  background-position: left top;
+  //background-size: auto 100%;
+  //background-width: 100%;
+  //background-attachment: fixed;
+  background-position: left bottom;
   webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; 
+  background-size: cover;
 }
+
 
 @media only screen and (min-width: 50em){
   .imgBkg{
+    background-image: url('/156323195_blur_dark.jpg');
     background-size: 100% auto;
+    background-position: right top;
   }
+
+
 }
 
 .headerRow{
@@ -35,8 +84,8 @@ html, body {
 #benefits{
   background-color: white;
   border-top: 1px solid #555;
-  padding-top: 1em;
-  padding-bottom: 3em;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 #benefits i{
@@ -52,20 +101,104 @@ html, body {
   text-transform: capitalize;
 }
 
+#bio{
+  background-color: $light-gray;
+  padding: 2em 0;
+  .social-icons a {
+    margin: 0 .5em 0 .5em;
+  }
+}
+
 
 footer{
-  background-color: white;
+  background-color: #333;
   color: #aeaeae;
   bottom:0;
   width:100%;
-  height:3em;   /* Height of the footer */
+  height:5em;   /* Height of the footer */
+  padding: .5em 0;
+  margin-top: 1em;
+
+  p{
+    font-size: .875em;
+    float: right;
+  }
+  a {
+    font-weight: 600;
+    color: #aeaeae;
+    &:hover{
+      color: darken(#aeaeae, 30%);
+    }
+  }
+  ul,p {
+    margin-bottom: 0 !important;
+  }
+  i {
+    line-height: 1.75em !important;
+  }
+  li {
+    display: inline-block;
+    margin-right: 1em;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
-.footer-row {
-  border-top: 1px solid #aeaeae;
+.sidebar{
+  background-color: lighten($light-gray, 5%); 
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 0em;
+  dd{
+    margin-left: .5em;
+  }
+  border: 1px solid $light-gray;
+}
+
+
+.sidebarCopy{
+  color: #666;
+}
+
+.owner.panel{
+  padding: .5em 1em;
+  background-color: #fff;
+  h6 {
+    margin-bottom: .25em;
+  }  
+}
+
+.ownerFunctions{
+    float: right;
+    display: inline-block;
+    margin-bottom: 0;
 }
 
 @media only screen and (max-width: 40em) { 
+
+  #bio{
+    h4, h5, .social-icons{
+      text-align: center !important;
+    }
+
+  }
+
+  footer{
+    margin-top: 0;
+    p, ul {
+      margin: 0 auto !important;
+    }
+    p, ul{
+      float: none !important;
+      text-align: center !important;
+    }
+  }
+
+  .ownerFunctions{
+    float: none;
+  }
+  
 
   .itemCopy{
     margin-bottom: 1em;
@@ -83,9 +216,12 @@ footer{
    
   }
 
+  .sidebar{
+    border: 0;
+  }
 
   .sidebarFooter{
-    background-color: #fafafa;
+    background-color: lighten($light-gray, 5%);
   }
 }
 
@@ -94,15 +230,24 @@ form{
 }
 
 .container{
-  min-height: 100%;
-  height: auto !important;
-  position: relative;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -1em;
+}
+
+
+@media only screen and (max-width: 40em) { 
+
+  .container{
+    margin: 0 auto 0;
+  }
 }
 
 .main-section{
   background-color: white;
   padding-top: 1em;
-  padding-bottom: 3em;
+  //padding-bottom: 3em;
 }
 
 #eventForm{
@@ -134,12 +279,17 @@ form{
   line-height: 1em !important;
 }
 
+#eventDate, #eventTime, #eventLocation{
+  display: block; 
+}
+
 .delete{
   font-size: .875em;
   /*margin-top: 2em !important;*/
 }
 
-.deleteEvent{
+.deleteItem{
+  font-weight: 300;
   font-size: .875em;
 }
 
@@ -162,7 +312,7 @@ h1 {
 
 .smaller{
   font-size: .875em;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1.2;
   color: #888888;
   margin-bottom: 0em;
@@ -193,33 +343,15 @@ h1 {
 }
 
 .circle {
-  display: block;
-  width: 75px;
-  height: 75px;
-  margin: 0em auto;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: 3px solid #eee;
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);  
+  @include round-image(75px, 0, auto, 0, .5em, 3px); 
 }
 
 .circle-small {
-  display: block;
-  width: 20px;
-  height: 20px;
-  margin: .875em .5em 0 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: 1px solid #eee;
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);  
+  @include round-image(20px, .875em, .5em, 0, 0, 1px);  
+}
+
+.circle-large{
+  @include round-image(125px, 0, auto, 0, auto, 3px); 
 }
 
 @media only screen and (max-width: 40em) {
@@ -237,21 +369,17 @@ h1 {
 
 }
 
-.sidebar{
-  background-color: #fafafa;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
 
-
-.sidebarCopy{
-  color: #666;
-}
 
 #addItem{
   background-color: #2ba6cb;
   width: 100%;
 
+}
+
+.reveal-modal{
+  font-weight: 300;
+  position: fixed;
 }
 
 .modal-buttons-inline{
@@ -261,4 +389,5 @@ h1 {
 table{
   border: 0;
   width: 100%;
+  margin-bottom: 4em;
 }
