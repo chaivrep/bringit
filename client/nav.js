@@ -1,10 +1,15 @@
 Template.nav.events({
 	'click #login': function (e, t) {
-		Meteor.loginWithFacebook();
-		Meteor.flush();
-		Router.go('/');
+		sign_in();
 	},
 });
 
+Template.nav.helpers({
+	'active': function(page){
+		if (page == Session.get('page')){
+			return 'active';
+		}
+	}
+});
 
 

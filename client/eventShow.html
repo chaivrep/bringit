@@ -39,7 +39,7 @@
 							{{#each eventItems}}
 							<li class="item">
 								<div class="row">
-									<div class="medium-9 columns">
+									<div class="small-8 medium-9 columns ">
 										<div class="row">
 											<div class="small-2  medium-2 columns img-col">
 												{{#if itemBringer}}
@@ -51,39 +51,40 @@
 													<p class="smaller"><em>{{#if itemBringer}}{{is_bringing itemBringer}}{{/if}}</em></p>
 													<h4>{{ itemName }}</h4>
 												</div>
+												{{#if isOwner}}
+													<div class="row">
+														<div class="small-12 columns">
+															<div class="row">
+																<div class="small-12 columns ">
+																	<a href="#" data-id='{{itemName}}' class="deleteItem"><i class="ion-trash-a"></i>Delete item</a>
+
+																	<!--Begin Modal-->
+																	{{> itemDeleteModal this}}
+																	<!--End Modal-->
+
+																</div>
+															</div>
+														</div>
+													</div>
+													{{/if}}
 											</div>
 
 										</div>
 
 									</div>
-									<div class="small-10 medium-3 columns text-center">
+									<div class="small-4 medium-3 columns ">
 										{{#if itemBringer}}
 										{{#if userIsBringer itemBringer}}
-										<a id="{{itemName}}" class="small radius alert secondary button right full-width unbringit">Un-bring!</a>
+										<a id="{{itemName}}" class="small radius alert secondary button right unbringit">Un-bring!</a>
 										{{else}}
-										<a class="small radius secondary button right full-width">Brought!</a>
+										<a class="small radius secondary button right">Brought!</a>
 										{{/if}}
 										{{else}}
-										<a id="{{itemName}}" class="small radius button right full-width bringit">Bring it!</a>
+										<a id="{{itemName}}" class="small radius button right bringit">Bring it!</a>
 										{{/if}}	
 									</div>
 								</div>
-								{{#if isOwner}}
-								<div class="row">
-									<div class="medium-9 columns">
-										<div class="row">
-											<div class="small-1o small-offset-2 medium-10 medium-offset-2 columns">
-												<a href="#" data-id='{{itemName}}' class="deleteItem"><i class="ion-trash-a"></i>Delete item</a>
-
-												<!--Begin Modal-->
-												{{> itemDeleteModal this}}
-												<!--End Modal-->
-
-											</div>
-										</div>
-									</div>
-								</div>
-								{{/if}}
+								
 							</li>
 
 							{{/each}}
@@ -200,7 +201,7 @@
 							</div>
 							<div class="small-12 medium-6 columns">
 								<ul class="inline-list ownerFunctions">
-									<li><h6><a class="sendInvite"><i class="ion-forward"></i> Send invites</a></h6></li>
+									<li><h6><a class="sendInvite"><i class="ion-forward"></i> Invite people</a></h6></li>
 									<li><h6><a class="deleteEvent" data-id="{{ _id }}"><i class="ion-trash-a"></i> Delete event</a></h6></li>
 									{{> inviteModal}}
 								</ul>
@@ -216,7 +217,7 @@
 <template name="descPanel">
 	{{#if edit_eventDesc}} 
 	<div class="small-12 columns" >
-		<h5 class='subheader'><input type='text' id="edit_eventDesc" placeholder="{{descPlaceholder}}" value="{{eventDesc}}"></h5>
+		<h5 class='subheader'><input type='text' id="edit_eventDesc" placeholder="{{descPlaceholder}}" value="{{evDesc}}"></h5>
 	</div>
 	{{else}}
 	<div class="small-12 columns" id="descDiv">

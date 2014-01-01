@@ -3,7 +3,7 @@ if (Meteor.isClient){
 }
 
 Router.configure({
-    notFoundTemplate: 'notFound',
+  notFoundTemplate: 'notFound',
 });
 
 
@@ -12,6 +12,9 @@ Router.map(function () {
   this.route('home', {
     path: '/',
     layoutTemplate: 'template',
+    before: function(){
+      Session.set('page', 'home');
+    }
   });
 
   this.route('logout', {
@@ -19,6 +22,7 @@ Router.map(function () {
     layoutTemplate: 'template',
     template: 'home',
     waitOn: function() {
+      Session.set('page', 'home');
       return Meteor.logout();
     },
   });
@@ -28,25 +32,27 @@ Router.map(function () {
     layoutTemplate: 'template',
     waitOn: function () {
       Session.set('eventId', null);
-      return [evsListHandle, Meteor.subscribe('users')];
+      Session.set('page', 'eventList');
+      return [userHandle, evsListHandle];
     },
     data: function () {
-      return evs.find({evOwner: Meteor.userId()}, {fields: {eventItems: 0, evDesc: 0, evLoc: 0}, sort: {evName: 1}});
+      return evs.find({evOwner: Meteor.userId()});
     },
+    loadingTemplate: 'loading'
   });
 
   this.route('eventShow', {
     path: '/:_id',
     layoutTemplate: 'template',
     waitOn: function () {
-      console.log('ID:', this.params._id);
       Session.set('eventId', this.params._id);
-      //return [Meteor.subscribe('evsOne', this.params._id), Meteor.subscribe('users')];
-      return [evsOneHandle, Meteor.subscribe('users')];
+      Session.set('page', null);
+      return [userHandle, evsOneHandle];
     },
     data: function () {
       return evs.findOne(this.params._id);
     },
+    loadingTemplate: 'loading'
   });
 
   

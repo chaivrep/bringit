@@ -34,7 +34,6 @@ $light-gray: #efefef;
 
 html, body {
   height: 100%;
-  overflow-x: hidden; /*THIS IS FIXING STUFF*/
 }
 
 dl{
@@ -47,13 +46,13 @@ dt{
 
 .imgBkg{
   
-  background-image: url('/tall.jpg');
+  background-image: url('/shutterstock_143361787_tall.jpg');
   background-color: #333;
   background-repeat: no-repeat;
-  //background-size: auto 100%;
+  background-size: auto 100%;
   //background-width: 100%;
   //background-attachment: fixed;
-  background-position: left bottom;
+  background-position: left top;
   webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -63,9 +62,9 @@ dt{
 
 @media only screen and (min-width: 50em){
   .imgBkg{
-    background-image: url('/156323195_blur_dark.jpg');
+    background-image: url('/shutterstock_143361787_wide.jpg');
     background-size: 100% auto;
-    background-position: right top;
+    background-position: left top;
   }
 
 
@@ -79,6 +78,15 @@ dt{
 .heroCopy h1, .heroCopy p, .heroCopy ul{
   color: white;
   font-weight: 300;
+}
+
+.heroCopy {
+  p, ul {
+    font-size: 1.25em !important;
+  }
+  p {
+    margin: 1.25em 0 .5em 0;
+  }
 }
 
 #benefits{
@@ -124,11 +132,14 @@ footer{
     float: right;
   }
   a {
-    font-weight: 600;
+    font-weight: 300;
     color: #aeaeae;
     &:hover{
       color: darken(#aeaeae, 30%);
     }
+  }
+  ul{
+    margin-left: 0;
   }
   ul,p {
     margin-bottom: 0 !important;
@@ -222,6 +233,7 @@ footer{
 
   .sidebarFooter{
     background-color: lighten($light-gray, 5%);
+    border-top: 1px solid $light-gray;
   }
 }
 
@@ -291,6 +303,7 @@ form{
 .deleteItem{
   font-weight: 300;
   font-size: .875em;
+  //margin-left: 1.25em;
 }
 
 h1 {
@@ -323,7 +336,18 @@ h1 {
   border-bottom: 1px solid #ccc !important;
   padding-top: 1.25em !important;
   padding-bottom: 1.25em !important;
-  padding-right: 2em !important;
+  
+  .button{
+    padding: .875em;
+    min-width: 6em;
+    margin: 0;
+  }
+
+  h4 {
+    margin: 0;
+  }
+
+
 }
 
 .item:last-child{
@@ -379,7 +403,7 @@ h1 {
 
 .reveal-modal{
   font-weight: 300;
-  position: fixed;
+  //position: fixed;
 }
 
 .modal-buttons-inline{

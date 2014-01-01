@@ -18,16 +18,16 @@ timeOptionsArray = function(){
 
 signInWithCallback = function(fn, params){
     if ( Meteor.userId()) {
-        console.log('User already logged in');
+        //console.log('User already logged in');
         return fn(params); 
     }
-    console.log('User not logged in');
+    //console.log('User not logged in');
     Meteor.loginWithFacebook({}, function(err){
         if (err){
             console.log(err);
             return false;
         } else {
-            console.log('Login success');
+            //console.log('Login success');
             Meteor.flush();
             return fn(params);
         }
@@ -58,16 +58,16 @@ Meteor.startup(function(){
     },*/
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
 
-           console.log("onSubmit:", insertDoc, updateDoc, currentDoc); 
+           //console.log("onSubmit:", insertDoc, updateDoc, currentDoc); 
             
            if ( Meteor.userId() ){
-                console.log('User already logged in');
+                //console.log('User already logged in');
                 createEvent(insertDoc);
 
                 //Return false to prevent standard insert
                 return false;
             } else {   
-                console.log('User not logged in');
+                //console.log('User not logged in');
                 Meteor.loginWithFacebook({}, function(err){
                     if (err){
                         console.log('Facebook login fail', err);
@@ -75,7 +75,7 @@ Meteor.startup(function(){
                         return false;
                     } else {
                         if (Meteor.userId()){
-                            console.log('Login success');
+                            //console.log('Login success');
                             createEvent(insertDoc);
                             //Return false to prevent standard insert
                            return false;
@@ -91,6 +91,16 @@ Meteor.startup(function(){
     });
 });
 
+sign_in = function(){
+    Meteor.loginWithFacebook(function(err){
+            if (err){
+                return;
+            } else {
+                Router.go('eventList');
+            }
+        });
+};
+
 createEvent = function(doc){
     console.log("createEvent");
     doc.evOwner = Meteor.userId();
@@ -98,13 +108,14 @@ createEvent = function(doc){
     doc.items = new Array();
     evs.insert(doc, function(err, id){
         if (id){
-            console.log('Successful insertion of event', id);
+            //console.log('Successful insertion of event', id);
 
-            evs.update(id, {$addToSet: {eventItems: {itemName: 'Sample Item', itemBringer: ""}}}, function(error, result){
+            //Add sample item
+            /*evs.update(id, {$addToSet: {eventItems: {itemName: 'Sample Item', itemBringer: ""}}}, function(error, result){
                 if (error){
                     console.log("addItems error:", error);
                 }
-            });
+            });*/
             Router.go('eventShow', {_id: id});
             return doc;
         } else {
@@ -114,14 +125,19 @@ createEvent = function(doc){
     });
 };
 
-Handlebars.registerHelper('user_name', function (u) {
+userName = function(u){
     if (u){
         usr = Meteor.users.findOne(u);
         if (usr){   
             return usr.profile.name;
         }
     }
+}
+
+Handlebars.registerHelper('user_name', function (u) {
+    return userName(u);
 });
+
 
 Handlebars.registerHelper('user_image', function (u) {
     if (u) {
@@ -148,7 +164,7 @@ Handlebars.registerHelper('timeOptions', function() {
 
 //FIX FOR FOUNDATION TO FORCE LOAD OF JS AFTER PAGE LOAD
 Template.template.rendered = function(){
-    console.log("template rendered");
+    //console.log("template rendered");
     $(document).foundation();
 }
 
@@ -156,10 +172,11 @@ Template.template.rendered = function(){
 //SUBSCRIPTIONS
 evsOneHandle = null;
 evsListHandle = null;
+userHandle = Meteor.subscribe("users");
 
 Deps.autorun(function() {
-    console.log("Autosub evs", Session.get("eventId"));
-    evsOneHandle = Meteor.subscribe("evs", Session.get("eventId"));
+    //console.log("Autosub evs", Session.get("eventId"));
+    evsOneHandle = Meteor.subscribe("evsOne", Session.get("eventId"));
     evsListHandle = Meteor.subscribe("evsList");
 });
 

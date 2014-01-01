@@ -2,6 +2,8 @@
 	<div class="row">
 		<div class="small-12 columns">
 			<h2>My Events</h2>
+
+			{{#if currentUser}}
 			<table>
 				<thead>
 					<tr>
@@ -24,6 +26,9 @@
 					{{/each}}
 				</tbody>
 			</table>
+			{{else}}
+			<p>You must be signed in to view your events. <a id="signin">Sign in</a></p>
+			{{/if}}
 		</div>
 	</div>
 </template>
