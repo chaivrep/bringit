@@ -297,7 +297,7 @@ Template.eventDeleteModal.events({
   		//console.log("Delete event delete confirm", name);
   		evs.remove(name);
   		$('.deleteEventModal').foundation('reveal', 'close');
-  		Router.go('home');
+  		Router.go('eventList');
   	},
 	'click .cancelDeleteEvent': function(e,t) {
 		//console.log("Delete event close reveal", e);
