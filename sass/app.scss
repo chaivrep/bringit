@@ -67,6 +67,11 @@ dt{
     background-position: left top;
   }
 
+  #benefits{
+    p {
+      margin-bottom: 0;
+    }
+  }
 
 }
 
@@ -94,6 +99,13 @@ dt{
   border-top: 1px solid #555;
   padding-top: 2em;
   padding-bottom: 2em;
+
+  .last-item{
+    p{
+      margin-bottom: 0;
+    }
+  }
+
 }
 
 #benefits i{
@@ -116,6 +128,13 @@ dt{
     padding-top: 2em;
     padding-bottom: 2em;
   }
+
+  p{
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+
+
   img {
     width: 100%;
   }
