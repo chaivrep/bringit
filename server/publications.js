@@ -12,3 +12,4 @@ Meteor.publish('users', function() {
 	this.ready();
 	return Meteor.users.find({}, {fields: {'services.facebook.id' : 1, 'profile.name': 1 }});
 });
+

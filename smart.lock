@@ -10,7 +10,9 @@
       "autoform": {},
       "collection2": {},
       "bitlywrap": {},
-      "zurb-foundation": {}
+      "zurb-foundation": {},
+      "analytics": {},
+      "maskedInput": {}
     },
     "packages": {
       "iron-router": {
@@ -30,8 +32,8 @@
       },
       "collection-hooks": {
         "git": "https://github.com/matb33/meteor-collection-hooks.git",
-        "tag": "v0.6.0",
-        "commit": "b563164c78d5ab4ad2258ce06736af6d4f0f33ba"
+        "tag": "v0.6.1",
+        "commit": "f8baa3b5a56ab35272c9260c623e1ae85ade6596"
       },
       "houston": {
         "git": "https://github.com/gterrono/meteor-admin-ui.git",
@@ -40,8 +42,8 @@
       },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
-        "tag": "v0.4.6",
-        "commit": "287c81d41a9422fb009a82b141256214cf2caa1e"
+        "tag": "v0.4.7",
+        "commit": "66c2fdbe40dcd3f75a9c93b5916d1595ee9cf394"
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
@@ -58,6 +60,16 @@
         "tag": "v0.1.10",
         "commit": "545234bc38f7a747a5d69b48f75c5cc77ca8382f"
       },
+      "analytics": {
+        "git": "https://github.com/Tarangp/Meteor-Analytics.git",
+        "tag": "v0.1.7",
+        "commit": "511d4ea829fdb1a45d8416e71773adfb35b29a09"
+      },
+      "maskedInput": {
+        "git": "https://github.com/austinrivas/meteor-maskedInput.git",
+        "tag": "v1.0.4",
+        "commit": "216923ef62f725e4faf6fff007dde48976a07c89"
+      },
       "paginated-subscription": {
         "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",
         "tag": "v0.1.2",
@@ -70,8 +82,8 @@
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.23",
-        "commit": "ccdb1244ae3a38c70f53e04a2d68879ca89a4f9f"
+        "tag": "v0.2.24",
+        "commit": "353f74f10d0586e6a416c081ded68e8e7fcde4a7"
       }
     }
   }
