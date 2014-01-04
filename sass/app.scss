@@ -109,6 +109,18 @@ dt{
   text-transform: capitalize;
 }
 
+#responsive{
+  
+  .row{
+    border-top: 2px solid $light-gray;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  img {
+    width: 100%;
+  }
+}
+
 #bio{
   background-color: $light-gray;
   padding: 2em 0;
