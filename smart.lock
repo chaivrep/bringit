@@ -11,14 +11,13 @@
       "collection2": {},
       "bitlywrap": {},
       "zurb-foundation": {},
-      "analytics": {},
-      "maskedInput": {}
+      "analytics": {}
     },
     "packages": {
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.6.1",
-        "commit": "4e1ee0581d68bff422a915dacb0bd30eae10fe08"
+        "tag": "v0.6.2",
+        "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
       },
       "moment": {
         "git": "https://github.com/acreeger/meteor-moment.git",
@@ -32,8 +31,8 @@
       },
       "collection-hooks": {
         "git": "https://github.com/matb33/meteor-collection-hooks.git",
-        "tag": "v0.6.1",
-        "commit": "f8baa3b5a56ab35272c9260c623e1ae85ade6596"
+        "tag": "v0.6.2",
+        "commit": "29484b2110206be93b01c6d11ce06ec9208de7bd"
       },
       "houston": {
         "git": "https://github.com/gterrono/meteor-admin-ui.git",
@@ -42,13 +41,13 @@
       },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
-        "tag": "v0.4.7",
-        "commit": "66c2fdbe40dcd3f75a9c93b5916d1595ee9cf394"
+        "tag": "v0.4.9",
+        "commit": "9e96537372c8bb8078257e0b81f1f5828e4f3194"
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.2.16",
-        "commit": "9647881e7cde07a6548dfdd214c67dfdd7424408"
+        "tag": "v0.2.17",
+        "commit": "186cc58040764b816392e19178ba373bda7a91c6"
       },
       "bitlywrap": {
         "git": "https://github.com/lacco/meteor-bitlywrap.git",
@@ -62,13 +61,8 @@
       },
       "analytics": {
         "git": "https://github.com/Tarangp/Meteor-Analytics.git",
-        "tag": "v0.1.7",
-        "commit": "511d4ea829fdb1a45d8416e71773adfb35b29a09"
-      },
-      "maskedInput": {
-        "git": "https://github.com/austinrivas/meteor-maskedInput.git",
-        "tag": "v1.0.4",
-        "commit": "216923ef62f725e4faf6fff007dde48976a07c89"
+        "tag": "v0.3.1",
+        "commit": "03c9b73ebfa0bd16dde9712297726bc41eab8cc6"
       },
       "paginated-subscription": {
         "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",
@@ -77,13 +71,13 @@
       },
       "spin": {
         "git": "https://github.com/SachaG/meteor-spin.git",
-        "tag": "v0.2.0",
-        "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
+        "tag": "v0.2.2",
+        "commit": "3f655f0016228e4195acc784c45d3e3a247dc39f"
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.24",
-        "commit": "353f74f10d0586e6a416c081ded68e8e7fcde4a7"
+        "tag": "v0.2.27",
+        "commit": "af0ad4079ae5b798c3089502dd24c3e1839ce8e6"
       }
     }
   }
