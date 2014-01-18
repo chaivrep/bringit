@@ -28,13 +28,16 @@ Router.map(function () {
       Session.set('page', 'home');
       //return userHandle;
     },
+    fastRender: true
   });
 
   this.route('logout', {
     path: '/user/logout',
     template: 'home',
     waitOn: function() {
-      Session.set('page', 'home');
+      if (Meteor.isClient){
+        Session.set('page', 'home');
+      }
       return Meteor.logout();
     },
   });
@@ -42,25 +45,33 @@ Router.map(function () {
   this.route('eventList', {
     path: '/user/eventList',
     waitOn: function () {
-      Session.set('eventId', null);
-      Session.set('page', 'eventList');
-      return [userHandle, evsListHandle];
+      if (Meteor.isClient){
+        Session.set('eventId', null);
+        Session.set('page', 'eventList');
+        return [userHandle, evsListHandle];
+      }
+      
     },
     data: function () {
       return evs.find({evOwner: Meteor.userId()});
     },
+    fastRender: true
   });
 
   this.route('eventShow', {
     path: '/:_id',
     waitOn: function () {
-      Session.set('eventId', this.params._id);
-      Session.set('page', null);
-      return [userHandle, evsOneHandle];
+      if (Meteor.isClient){
+        Session.set('eventId', this.params._id);
+        Session.set('page', null);
+        return [userHandle, evsOneHandle];
+      }
+      
     },
     data: function () {
       return evs.findOne(this.params._id);
     },
+    fastRender: true
   });
 });
 

@@ -11,7 +11,8 @@
       "collection2": {},
       "bitlywrap": {},
       "zurb-foundation": {},
-      "analytics": {}
+      "analytics": {},
+      "fast-render": {}
     },
     "packages": {
       "iron-router": {
@@ -63,6 +64,11 @@
         "git": "https://github.com/Tarangp/Meteor-Analytics.git",
         "tag": "v0.3.6",
         "commit": "faff82d9417d82e6057e5c27eab2ff2032622d97"
+      },
+      "fast-render": {
+        "git": "https://github.com/arunoda/meteor-fast-render.git",
+        "tag": "v0.1.11",
+        "commit": "7514e0e8f6f387f7ba510eb633568831a066b481"
       },
       "paginated-subscription": {
         "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",

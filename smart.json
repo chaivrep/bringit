@@ -9,6 +9,7 @@
     "collection2": {},
     "bitlywrap": {},
     "zurb-foundation": {},
-    "analytics": {}
+    "analytics": {},
+    "fast-render": {}
   }
 }
