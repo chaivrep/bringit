@@ -53,10 +53,10 @@ Handlebars.registerHelper('timeOptions', function() {
  ******************************************************/
 
 
-signInWithCallback = function(fn, params){
+signInWithCallback = function(callback){
     if ( Meteor.userId()) {
         //console.log('User already logged in');
-        return fn(params); 
+        return callback(); 
     }
     //console.log('User not logged in');
     Meteor.loginWithFacebook({}, function(err){
@@ -66,17 +66,7 @@ signInWithCallback = function(fn, params){
         } else {
             //console.log('Login success');
             Meteor.flush();
-            return fn(params);
-        }
-    });
-};
-
-signIn = function(){
-    Meteor.loginWithFacebook(function(err){
-        if (err){
-            return;
-        } else {
-            Router.go('eventList');
+            return callback();
         }
     });
 };
@@ -85,11 +75,11 @@ createEvent = function(doc){
     //console.log("createEvent");
     doc.evOwner = Meteor.userId();
     doc.evDesc = "";
-    doc.items = new Array();
+    doc.eventItems = new Array();
 
     //Fix local time to be UTC
-    doc.evDate = new Date(doc.evDate.setTime(doc.evDate.getTime() + doc.evDate.getTimezoneOffset()*60*1000));
-    
+    doc.evDate.setTime(doc.evDate.getTime() + doc.evDate.getTimezoneOffset()*60000);
+
     newEvent = evs.insert(doc, function(err, id){
         if (id){
             //console.log('Successful insertion of event', id);
@@ -112,19 +102,18 @@ userName = function(u){
 }
 
 timeOptionsArray = function(){
-        var a = new Date(0,0,0,0,0,0,0);
-        var b = new Date(0,0,0,0,30,0,0);
+    var a = new Date(0,0,0,0,0,0,0);
+    var b = new Date(0,0,0,0,30,0,0);
 
-        r = new Array();
-        for (i =0; i < ops.length; i++){
-            r[i] = {label: ops[i].format("hh:mm A"), value: ops[i].format("hh:mm A")};
-        }
-        return r;
+    r = new Array();
+    for (i =0; i < ops.length; i++){
+        r[i] = {label: ops[i].format("hh:mm A"), value: ops[i].format("hh:mm A")};
+    }
+    return r;
 };
 
 getShortUrl = function(){
     currLocation = window.location.href;
-    //currLocation = "http://www.gogole.com";
     $.getJSON(
         "http://api.bitly.com/v3/shorten?callback=?", 
         { 
@@ -133,9 +122,12 @@ getShortUrl = function(){
             "login": 'bringitapp',
             "longUrl": currLocation.toString(),
     }, function(response){
-        shortUrl = response.data.url;
-        result = shortUrl.replace(/.*?:\/\//g, "");
+        if (response.status_code == "500") {
+            result = response.status_txt;
+        } else {
+            shortUrl = response.data.url;
+            result = shortUrl.replace(/.*?:\/\//g, "");
+        }
         $(".bitly").val(result);
-        //$(".bitly-link").attr('href', response.data.url);
     });
 }

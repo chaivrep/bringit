@@ -1,6 +1,6 @@
 Template.nav.events({
 	'click #login': function (e, t) {
-		signIn();
+		signInWithCallback(function(){Router.go('eventList')});
 	},
 });
 

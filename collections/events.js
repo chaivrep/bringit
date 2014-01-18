@@ -54,9 +54,13 @@ evs.allow({
   update: function(userId, doc, fields, modifier){
   	//console.log("Allow update", userId, doc.evOwner, fields, modifier, (userId && doc.evOwner === userId));
   	
-  	//Allow anyone to update the items
+  	//Client can never update evOwner
+  	if (fields.toString() == 'evOwner') {
+  		return false;
+  	}
+  	//Allow anyone logged in to update the items
   	if (fields.toString() == 'eventItems') {
-  		return true;
+  		return (userId && userId);
   	} else {
   	//Only allow owner to update the rest of the fields
     	return (userId && doc.evOwner === userId);

@@ -14,7 +14,7 @@ Template.eventShow.helpers({
 		return moment(t, "HH:mm A").format('LT');
 	},
 	formatDateInput: function(d){
-		return moment(d).format('YYYY-MM-DD');
+		return moment(d).format('MM/DD/YYYY');
 	},
 	eventDescExists: function(){
 		return ((this.evDesc != "") || (this.evOwner == Meteor.userId()));
@@ -202,17 +202,19 @@ Template.eventShow.events({
 	'keyup #add_itemName': function (e, t) {
 		if (e.which === 13) {
 			var itemNameVal = String(e.target.value || "");
+			var id = this._id;
+			var owner = this.evOwner;
 			if (itemNameVal) {
-				params = new Array(this._id, itemNameVal, this.evOwner);
-				signInWithCallback(addItem, params);
+				signInWithCallback(function(){return addItem(id, itemNameVal, owner)});
 			}
 		}
 	},
 	'focusout #add_itemName': function (e, t){
 		var itemNameVal = String(e.target.value || "");
+		var id = this._id;
+		var owner = this.evOwner;
 		if (itemNameVal) {
-			params = new Array(this._id, itemNameVal, this.evOwner);
-			signInWithCallback(addItem, params);
+			signInWithCallback(function(){return addItem(id, itemNameVal, owner)});
 		}
 		Session.set('add_Item', false);
 	},
@@ -229,16 +231,13 @@ Template.eventShow.events({
 	'click .bringit': function(e,t){
   		//add user as Bringer
   		name = e.target.id;
-  		params = new Array(name);
-
-  		signInWithCallback(updateBringer, params);e
+  		signInWithCallback(function(){return updateBringer(name)});
   		
   	},
   	'click .unbringit': function(e,t){
   		//remove user as Bringer
   		name = e.target.id;
-  		params = new Array(name, null);
-  		updateBringer(params);
+  		updateBringer(name, "");
   	},
   	'click input.bitly': function(e,t){
   		$('.bitly').select();
@@ -260,19 +259,19 @@ function updateEventAttr(id, attr, val, cookie, blankForbid) {
 
 
 //params[0] is item; params[1] is bringer's id (optional)
-function updateBringer(params){
+function updateBringer(itemName, userId){
 	
 	var l = evs.findOne(Session.get('eventId'));
 
 	//If user not passed in, assume bringer is current user
-	if (params.length == 1){
-		params[1] = Meteor.userId();
+	if (userId == null){
+		userId = Meteor.userId();
 		//console.log("params", params);
 	}
 	if (l && l.eventItems) {
 		for (var i = 0; i < l.eventItems.length; i++) {
-			if (l.eventItems[i].itemName === params[0]) {
-				l.eventItems[i].itemBringer = params[1];
+			if (l.eventItems[i].itemName === itemName) {
+				l.eventItems[i].itemBringer = userId;
 			}
 		}
 		evs.update(l._id, {$set: {"eventItems": l.eventItems}});
@@ -280,22 +279,19 @@ function updateBringer(params){
 };
 
 
-function addItem(params){
+function addItem(eventId, itemName, eventOwner){
+	console.log("Add item: ", eventId, itemName, eventOwner);
 	bringer = null;
 	//If someone other than the event owner adds an item, automatically mark them as bringing it
-	//console.log('params[2]:', params[2], " uId:", Meteor.userId());
-	if (params[2] != Meteor.userId()) {
+	if (eventOwner != Meteor.userId()) {
 		bringer = Meteor.userId();
 	} 
-	//console.log('addItem:', params[0], params[1], bringer);
-	evs.update(params[0], {$addToSet: {eventItems: {itemName: params[1], itemBringer: bringer}}}, function(error, result){
+	evs.update(eventId, {$addToSet: {eventItems: {itemName: itemName, itemBringer: bringer}}}, function(error, result){
 		if (error){
 			console.log("addItems error:", error);
 		}
-
 	});
 	Session.set('add_Item', false);
-	Deps.flush();
 };
 
 

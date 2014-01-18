@@ -123,7 +123,7 @@
 										<dl>
 										<dt class="sidebarCopy">Date:</dt>
 										<dd class="sidebarCopy">{{#if edit_eventDate}}
-											<input type='date' id="edit_eventDate" value="{{formatDateInput evDate}}">
+											<input class="sidebarCopy" type='date' id="edit_eventDate" value="{{formatDateInput evDate}}">
 											{{else}}
 											<span id="eventDate">{{ formatDate evDate }}</span>
 											{{/if}}
@@ -138,7 +138,7 @@
 										<dd class="sidebarCopy">{{#if edit_eventTime}}
 											<select id="edit_eventTime">
 												{{#each timeOptions}}
-													<option {{selected evTime value}} value="{{value}}">{{label}}</option>
+													<option class="sidebarCopy" {{selected evTime value}} value="{{value}}">{{label}}</option>
 												{{/each}}
 											</select>
 											{{else}}
@@ -153,7 +153,7 @@
 										<dl>
 										<dt class="sidebarCopy">Where:</dt>
 										<dd class="sidebarCopy">{{#if edit_eventLocation}}
-											<input type='text' id="edit_eventLocation" value="{{evLoc}}">
+											<input class="sidebarCopy" type='text' id="edit_eventLocation" value="{{evLoc}}">
 											{{else}}
 											<span id="eventLocation">{{ evLoc}}</span>
 											{{/if}}

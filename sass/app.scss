@@ -21,7 +21,7 @@ $dark-gray: #333;
  *
  *******************************/
 
-@mixin round-image($diameter, $marg-top, $marg-right, $marg-btm, $marg-left, $b-width){
+@mixin round-image($diameter, $marg-top, $marg-right, $marg-btm, $marg-left){
   display: block;
   width: $diameter;
   height: $diameter;
@@ -29,10 +29,10 @@ $dark-gray: #333;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: $b-width solid #eee;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  //border: $b-width solid #eee;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -380,15 +380,15 @@ div.host{
 }
 
 .circle {
-  @include round-image(75px, 0, auto, 0, .5em, 3px); 
+  @include round-image(75px, 0, auto, 0, .5em); 
 }
 
 .circle-small {
-  @include round-image(20px, 0, .25em, 0, 0, 1px);  
+  @include round-image(20px, 0, .25em, 0, 0);  
 }
 
 .circle-large{
-  @include round-image(125px, 0, auto, 0, auto, 3px); 
+  @include round-image(125px, 0, auto, 0, auto); 
 }
 
 .small-img{
@@ -425,7 +425,7 @@ div.host{
   }
 
   .circle-small {
-    @include round-image(20px, .875em, .5em, 0, 0, 1px);  
+    @include round-image(20px, .875em, .5em, 0, 0);  
   }
 
   #benefits{

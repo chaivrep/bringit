@@ -328,10 +328,9 @@ div.host {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: 3px solid #eeeeee;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3); }
 
 /* line 386, ../../sass/app.scss */
@@ -343,10 +342,9 @@ div.host {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: 1px solid #eeeeee;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3); }
 
 /* line 390, ../../sass/app.scss */
@@ -358,10 +356,9 @@ div.host {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-border-radius: 99em;
-  -moz-border-radius: 99em;
-  border-radius: 99em;
-  border: 3px solid #eeeeee;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3); }
 
 /* line 394, ../../sass/app.scss */
@@ -403,10 +400,9 @@ div.host {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    -webkit-border-radius: 99em;
-    -moz-border-radius: 99em;
-    border-radius: 99em;
-    border: 1px solid #eeeeee;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3); }
 
   /* line 432, ../../sass/app.scss */

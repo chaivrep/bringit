@@ -6,6 +6,6 @@ Template.eventList.helpers({
 
 Template.eventList.events({
 	'click #signin': function(e, t) {
-		signIn();
+		signInWithCallback(function(){return Router.go('eventList')});
 	}
 });
