@@ -26,20 +26,21 @@ Router.map(function () {
     path: '/',
     before: function(){
       Session.set('page', 'home');
-      //return userHandle;
     },
     fastRender: true
   });
 
   this.route('logout', {
     path: '/user/logout',
-    template: 'home',
     waitOn: function() {
       if (Meteor.isClient){
         Session.set('page', 'home');
       }
       return Meteor.logout();
     },
+    action: function(){
+      this.render('home');
+    }
   });
 
   this.route('eventList', {

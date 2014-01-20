@@ -95,6 +95,7 @@ table{
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: left top;
+  background-attachment: fixed;
   webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -474,7 +475,11 @@ div.host{
   }
 }
 
-@media only screen and (min-width: 50em){
+@media only screen and (min-width: 63em){
+  .headerRow{
+    padding-top: 3em;
+  }
+
   .imgBkg{
     background-size: 100% auto;
     background-position: left top;
