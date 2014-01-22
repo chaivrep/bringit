@@ -10,6 +10,7 @@
     "bitlywrap": {},
     "zurb-foundation": {},
     "analytics": {},
-    "fast-render": {}
+    "fast-render": {},
+    "headly": {}
   }
 }

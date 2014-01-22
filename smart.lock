@@ -12,7 +12,8 @@
       "bitlywrap": {},
       "zurb-foundation": {},
       "analytics": {},
-      "fast-render": {}
+      "fast-render": {},
+      "headly": {}
     },
     "packages": {
       "iron-router": {
@@ -62,13 +63,18 @@
       },
       "analytics": {
         "git": "https://github.com/Tarangp/Meteor-Analytics.git",
-        "tag": "v0.3.6",
-        "commit": "faff82d9417d82e6057e5c27eab2ff2032622d97"
+        "tag": "v0.3.8",
+        "commit": "477897624fc2494bd496e522b7807eff75d31e90"
       },
       "fast-render": {
         "git": "https://github.com/arunoda/meteor-fast-render.git",
-        "tag": "v0.1.11",
-        "commit": "7514e0e8f6f387f7ba510eb633568831a066b481"
+        "tag": "v0.1.12",
+        "commit": "b190f1592401f4084ce54b8f713b134e35a4e0db"
+      },
+      "headly": {
+        "git": "https://github.com/ayal/headly",
+        "tag": "v0.0.514",
+        "commit": "a200e5d37c12ad15fa3d690bb645c5fc9477993d"
       },
       "paginated-subscription": {
         "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",
@@ -82,8 +88,8 @@
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.29",
-        "commit": "dc40caf4eaaeb456e1a4e7e227ad326bcd5607b5"
+        "tag": "v0.2.30",
+        "commit": "40f983129da6e82b3ab2fa1f9e73111d818ee71e"
       }
     }
   }
