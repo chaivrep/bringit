@@ -5,6 +5,6 @@ Template.template.rendered = function(){
 
 Template.template.helpers({
 	analyticsPage: function(){
-		return analytics.page(Session.get('page'));
+		analytics.page(Session.get('page'));
 	},
 });

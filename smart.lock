@@ -44,13 +44,13 @@
       },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
-        "tag": "v0.4.12",
-        "commit": "043d05dfb9dc8a4df23114f621cbe4f4634dab46"
+        "tag": "v0.4.13",
+        "commit": "105803e4d42308893fbda30585dbdb4a38077e9a"
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.3.3",
-        "commit": "d5c99b1c0fe30778e683175ecb0dd36529e6271e"
+        "tag": "v0.3.7",
+        "commit": "4c6c2dfd87af8cda321c80e1baea72842ad5c542"
       },
       "bitlywrap": {
         "git": "https://github.com/lacco/meteor-bitlywrap.git",
@@ -94,8 +94,8 @@
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.31",
-        "commit": "61a690523b0371cd35492df2fd1c85bfa59393ac"
+        "tag": "v0.2.36",
+        "commit": "d01745787de0711ffd095dcd212749d94a3fe0eb"
       }
     }
   }
