@@ -21,9 +21,13 @@ Meteor.startup(function(){
     },*/
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
 
-           //console.log("onSubmit:", insertDoc, updateDoc, currentDoc); 
+           
+           //Tracking: Clicked submit to create event
+           analytics.track('New Event: Clicked submit');
             
            if ( Meteor.userId() ){
+
+                identifyUser();
                 //console.log('User already logged in');
                 createEvent(insertDoc);
 
@@ -39,6 +43,7 @@ Meteor.startup(function(){
                     } else {
                         if (Meteor.userId()){
                             //console.log('Login success');
+                            identifyUser();
                             createEvent(insertDoc);
                             //Return false to prevent standard insert
                            return false;

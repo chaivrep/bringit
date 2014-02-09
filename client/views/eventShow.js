@@ -222,22 +222,30 @@ Template.eventShow.events({
   		var name = $(e.target).data("id");
   		//console.log("Opening confirm for ", name);
   		$("div[data-id = '" + name + "']").foundation('reveal', 'open');
+  		//Tracking: Show delete item modal
+    	analytics.track('Delete item: Show modal');
   	},
   	'click .deleteEvent': function(e,t){
   		var name = $(e.target).data("id");
   		//console.log("Opening confirm for ", name);
   		$('.deleteEventModal').foundation('reveal', 'open');
+  		//Tracking: Show delete event modal
+    	analytics.track('Delete event: Show modal');
   	},
 	'click .bringit': function(e,t){
   		//add user as Bringer
   		name = e.target.id;
   		signInWithCallback(function(){return updateBringer(name)});
+  		//Tracking: Bring It!
+    	analytics.track('Bring item: Bring');
   		
   	},
   	'click .unbringit': function(e,t){
   		//remove user as Bringer
   		name = e.target.id;
   		updateBringer(name, "");
+  		//Tracking: un-bring It!
+    	analytics.track('Bring item: Un-bring');
   	},
   	'click input.bitly': function(e,t){
   		$('.bitly').select();
@@ -254,11 +262,12 @@ function updateEventAttr(id, attr, val, cookie, blankForbid) {
 	if ((val != "") || !blankForbid) {
 		evs.update(id, {$set: obj});
 	}
+	//Tracking: Update event - Event owner is updating something about the event
+    analytics.track('Update event', {attribute: attr});
 	Session.set(cookie, false);
 };
 
 
-//params[0] is item; params[1] is bringer's id (optional)
 function updateBringer(itemName, userId){
 	
 	var l = evs.findOne(Session.get('eventId'));
@@ -280,12 +289,17 @@ function updateBringer(itemName, userId){
 
 
 function addItem(eventId, itemName, eventOwner){
-	console.log("Add item: ", eventId, itemName, eventOwner);
+	//console.log("Add item: ", eventId, itemName, eventOwner);
 	bringer = null;
 	//If someone other than the event owner adds an item, automatically mark them as bringing it
 	if (eventOwner != Meteor.userId()) {
 		bringer = Meteor.userId();
-	} 
+		//Tracking: Add item - SOmeone other than the event owner is adding the item
+        analytics.track('Add Item: Not event owner');
+	} else {
+		//Tracking: Add item - Event owner is adding the item
+        analytics.track('Add Item: Event owner');
+	}
 	evs.update(eventId, {$addToSet: {eventItems: {itemName: itemName, itemBringer: bringer}}}, function(error, result){
 		if (error){
 			console.log("addItems error:", error);
@@ -312,6 +326,8 @@ Template.eventDeleteModal.events({
   		//console.log("Delete event delete confirm", name);
   		evs.remove(name);
   		$('.deleteEventModal').foundation('reveal', 'close');
+  		//Tracking: Confirm delete event
+    	analytics.track('Delete event: Confirm delete');
   		Router.go('eventList');
   	},
 	'click .cancelDeleteEvent': function(e,t) {
@@ -328,6 +344,8 @@ Template.itemDeleteModal.events({
   		//console.log("Delete item delete confirm", name);
   		evs.update(Session.get('eventId'), {$pull: {eventItems: {itemName: name}}});
   		$('.deleteItemModal').foundation('reveal', 'close');
+  		//Tracking: Confirm delete item
+    	analytics.track('Delete item: Confirm delete');
   		return;
   	},
 	'click .cancelDeleteItem': function(e,t) {

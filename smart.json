@@ -11,6 +11,7 @@
     "zurb-foundation": {},
     "analytics": {},
     "fast-render": {},
-    "headly": {}
+    "headly": {},
+    "analyticsjs": {}
   }
 }

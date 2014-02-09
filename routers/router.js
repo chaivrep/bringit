@@ -64,7 +64,7 @@ Router.map(function () {
     waitOn: function () {
       if (Meteor.isClient){
         Session.set('eventId', this.params._id);
-        Session.set('page', null);
+        Session.set('page', 'eventShow');
         return [userHandle, evsOneHandle];
       }
       

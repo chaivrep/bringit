@@ -65,6 +65,7 @@ signInWithCallback = function(callback){
             return false;
         } else {
             //console.log('Login success');
+            identifyUser();
             Meteor.flush();
             return callback();
         }
@@ -84,6 +85,8 @@ createEvent = function(doc){
         if (id){
             //console.log('Successful insertion of event', id);
             Router.go('eventShow', {_id: id});
+            //Tracking: Clicked submit to create event
+            analytics.track('New Event: Event created');
             return doc;
         } else {
             console.log('Error inserting event', err);
@@ -130,4 +133,12 @@ getShortUrl = function(){
         }
         $(".bitly").val(result);
     });
+}
+
+identifyUser = function(){
+
+    //Identify User for analytics
+    if (Meteor.userId()){
+        analytics.identify(Meteor.userId());
+    }
 }
